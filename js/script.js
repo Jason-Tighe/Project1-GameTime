@@ -10,6 +10,32 @@ const dist = document.querySelector('#counter')
 canvas.width = 600;
 canvas.height = 600;
 const ctx = canvas.getContext('2d');
+
+function drawBackgroundLine(){
+    ctx.beginPath();
+    ctx.moveTo(0,400)
+    ctx.lineTo(600,400)
+    ctx.lineWidth = 1.9;
+    ctx.strokeStyle = "grey"
+    ctx.stroke();
+}
+
+let preSetTime = 1000;
+let enemSpeed = 5;
+
+function getRandomNumber(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomNumberInterval(timeInterval){
+  let returnTime = timeInterval;
+  if(Math.random() < .5){
+    returnTime =+ getRandomNumber(preSetTime%3, preSetTime * 1.5);
+  } else {
+    returnTime -= getRandomNumber(preSetTime%5, preSetTime%2);
+  }
+  return returnTime
+}
 // const b = canvas.getContext('2d');
 // const g = canvas.getContext('2d');
 
@@ -19,7 +45,7 @@ const ctx = canvas.getContext('2d');
 // g.fillRect(0,775,innerWidth, 25)
 
 class Player{
-  constructor(x, y, size, color){
+    constructor(x, y, size, color){
     this.x = x;
     this.y = y;
     this.size = size;
@@ -74,15 +100,19 @@ class Enemy {
 
 let pillarMen = []
 
+function generateBaddies (){
+  let timeDelay = randomNumberInterval(preSetTime);
+  pillarMen.push(new Enemy(50, enemSpeed))
 
-function drawBackgroundLine(){
-    ctx.beginPath();
-    ctx.moveTo(0,400)
-    ctx.lineTo(600,400)
-    ctx.lineWidth = 1.9;
-    ctx.strokeStyle = "grey"
-    ctx.stroke();
+  setTimeout(generateBaddies, timeDelay)
 }
+
+
+setTimeout(()=>{
+  generateBaddies();
+},randomNumberInterval(preSetTime))
+
+
 
 function animate(){
   requestAnimationFrame(animate);
@@ -91,11 +121,15 @@ function animate(){
   drawBackgroundLine();
 
   player.draw();
-  
-  pillarMen.forEach(pillarMan => {
-    pillarMan.slide();
-  });
 
+  pillarMen.forEach((pillarMan, index) => {
+    pillarMan.slide();
+    if((pillarMan.x + pillarMan.size) <= 0){
+      setTimeout(() => {
+        pillarMen.splice(index, 1);
+      }, 0)
+    }
+  });
 }
 
 animate();
