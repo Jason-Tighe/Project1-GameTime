@@ -1,39 +1,168 @@
 const game = document.querySelector('.game')
 const canvas = document.querySelector('canvas')
-const pen = document.querySelector('.mainBoi');
+const mainBoi = document.querySelector('.mainBoi');
 const badBoi = document.querySelector('.badBoi');
 const boop = document.querySelector('#boop')
 const baap = document.querySelector('#baap')
 const dist = document.querySelector('#counter')
 
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const c = canvas.getContext('2d');
+canvas.width = 600;
+canvas.height = 600;
+const ctx = canvas.getContext('2d');
+// const b = canvas.getContext('2d');
+// const g = canvas.getContext('2d');
+
+// g.fillStyle = "darkgrey"
+// g.fillRect(0,775,innerWidth, 1000)
+// g.fillStyle = "grey"
+// g.fillRect(0,775,innerWidth, 25)
+
+class Player{
+  constructor(x, y, size, color){
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.color = color;
+    this.jumpHeight = 12;
+    this.shouldJump = false;
+    this.jumpCounter = 0;
+  }
+  jump(){
+    if(this.shouldJump){
+      this.jumpCounter++;
+      if(this.jumpCounter < 15){
+       this.y -= this.jumpHeight;
+    } else if(this.jumpCounter > 14 && this.jumpCounter < 19){
+      this.y += 0;
+    } else if (this.jumpCounter < 33){
+      this.y += this.jumpHeight;
+    }
+
+    if(this.jumpCounter >= 32){
+      this.shouldJump = false;
+    }
+    }
+  }
+  draw(){
+    this.jump();
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.size, this.size);
+  }
+}
 
 
-// c.fillRext(x,y,width, height)
-//this is setting up the  siz of  the shape to be a variable that I can update
-// c.fillRect(100,635, 70, 150)
+let player = new Player( 150, 350, 50, "teal");
 
-let xM = 100
-let yM = 635
-let wM = 70
-let hM = 150
-let dX = 1
+class Enemy {
+  constructor(size, speed){
+    this.x = canvas.width + size;
+    this.y = 400 - size;
+    this.size = size;
+    this.color = "orange";
+    this.slideSpeed = speed;
+  }
+  draw(){
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.size, this.size);
+  }
+  slide(){
+    this.draw();
+    this.x -= this.slideSpeed;
+  }
+}
 
+let pillarMen = []
+
+
+function drawBackgroundLine(){
+    ctx.beginPath();
+    ctx.moveTo(0,400)
+    ctx.lineTo(600,400)
+    ctx.lineWidth = 1.9;
+    ctx.strokeStyle = "grey"
+    ctx.stroke();
+}
 
 function animate(){
   requestAnimationFrame(animate);
-  c.clearRect(0,0,innerWidth, innerHeight);
-  c.beginPath();
-  c.fillStyle = 'teal',
-  c.fillRect(xM, yM, wM, hM)
+  ctx.clearRect(0,0,canvas.width, canvas.height)
 
-  xM += dX;
+  drawBackgroundLine();
+
+  player.draw();
+  
+  pillarMen.forEach(pillarMan => {
+    pillarMan.slide();
+  });
+
 }
 
 animate();
+
+addEventListener("keydown", (e)=>{
+  if(e.code === 'Space'){
+    if(!player.shouldJump){
+      player.jumpCounter=0;
+      player.shouldJump = true;
+    }
+  }
+})
+
+
+//
+// // c.fillRext(x,y,width, height)
+// //this is setting up the  siz of  the shape to be a variable that I can update
+// // c.fillRect(100,635, 70, 150)
+// //starting coords for mainBoi
+// let xM = 100
+// let yM = 635
+// let wM = 70
+// let hM = 150
+// let dX = 1
+//
+//
+// var xB = innerWidth
+// var yB = 720
+// var wB = 70
+// var hB = 70
+// var dxB = 1
+//
+// // function animate(){
+// //   requestAnimationFrame(animate);
+// //   b.clearRect(xB,yB,innerWidth,innerHeight);
+// //   b.beginPath();
+// //   // g.fillStyle = "darkgrey"
+// //   // g.fillRect(0,775,innerWidth, 1000)
+// //   // g.fillStyle = "grey"
+// //   // g.fillRect(0,775,innerWidth, 25)
+// //   b.fillStyle = 'red',
+// //   b.fillRect(xB, yB, wB, hB)
+// //
+// //
+// //   xB -= dxB;
+// // }
+//
+// // animate();
+//
+//
+// m.fillStyle = 'orange',
+// m.fillRect(xM, yM, wM, hM)
+//
+// function jump(){
+//   if(yM > limit && !goingDown){
+//           yM-=10;
+//       } else{
+//       goingDown = true;
+//           yM +=10;
+//           if(yM > jump_y){
+//               clearInterval(jumping);
+//               goingDown = false;
+//           }
+//
+//       }
+//   }
+  // body.addEventListener('click', (e) =>{jump() });
 
   //this is getting the coords
   // function getCoords(elem) {
@@ -96,14 +225,14 @@ animate();
 
   // xBUpdate()
 
-
-  function jump(){
-    if(pen.classList != 'animate')
-    {pen.classList.add('animate')
-  }
-     setTimeout(function(){
-      pen.classList.remove('animate')},600)
-  }
+  //
+  // function jump(){
+  //   if(mainBoi.classList != 'animate')
+  //   {pen.classList.add('animate')
+  // }
+  //    setTimeout(function(){
+  //     mainBoi.classList.remove('animate')},600)
+  // }
 
 
 
@@ -115,4 +244,3 @@ animate();
   // }, 10);
 
   //this allows us to click anywhere with the game div to get it to jump instead of just the chracter itself
-  gameBoy.addEventListener('click', (e) =>{jump() });
