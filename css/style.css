@@ -3,45 +3,19 @@
   padding: 0;
 }
 
+
+body{
+  display: grid;
+}
+
 canvas{
+  grid-column: 2;
+  grid-row: 2;
   border: 5px solid;
-}
-
-.mainBoi{
-  /* width: 20px;
-  height: 50px;
-  background-color: teal;
-  position: relative;
-  top: 150px; */
 
 }
 
-.badBoi{
-  /* width: 20px;
-  height: 20px;
-  background-color: orange;
-  position: relative;
-  top: 130px;
-  left: 480px; */
-  /* animation: badBoi 1s infinite linear; */
+div.topBoi{
+  grid-row: 1;
+  height: 15vh
 }
-
-
-
-/* .animate{
-    animation: jump 600ms;
-}
-
-
-@keyframes badBoi{
-  0%{left:480px;}
-  100%{left:-40px;}
-}
-
-
-@keyframes jump{
-  0%{ top: 150px;}
-  30%{top: 100px;}
-  70%{top: 100px;}
-  100%{top: 150px;}
-} */
