@@ -12,7 +12,7 @@ canvas{
   grid-column: 2;
   grid-row: 2;
   border: 5px solid;
-  image-rendering: pixelated;
+  background: url('css/Free-Pixel-Art-Hill/PREVIEWS/full.png');
 }
 
 div.topBoi{
