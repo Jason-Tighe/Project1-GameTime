@@ -3,19 +3,78 @@
   padding: 0;
 }
 
+:root {
+   --pixel-size: 24;
+}
 
 body{
   display: grid;
-}
 
+}
+/*
 canvas{
   grid-column: 2;
   grid-row: 2;
   border: 5px solid;
+
   /* background: url('css/Free-Pixel-Art-Hill/PREVIEWS/full.png'); */
+/* ] */
+.buffer{
+  width: 20px;
+  height: 220px;
+  grid-column-start: 1;
+  grid-row-start: 1;
 }
 
-div.topBoi{
-  grid-row: 1;
-  height: 15vh
+.roundBoi{
+  display: grid;
+  border: 5px solid;
+  /* background-color: rgb(100,125,165); */
+  grid-column-start: 2;
+  grid-row-start: 2;
+  width: 600px;
+  height: 300px;
+}
+
+.game{
+  display: grid;
+  grid-row: 4;
+  /* border: solid 1px; */
+  background-color: orange;
+}
+
+
+
+.mainBoi{
+  grid-column-start: 1;
+  position: relative;
+  background: red;
+  margin-left: 40px;
+  height: 24px;
+  width: 24px;
+  overflow: hidden;
+  /* animation: jump 1.2s  infinite; */
+}
+
+.spriteBoi{
+  animation: moveSpritesheet 1s steps(6) infinite;
+
+}
+
+
+@keyframes moveSpritesheet {
+   from {
+      transform: translate3d(0px,0,0)
+   }
+   to {
+      transform: translate3d(-100%,0,0)
+   }
+}
+
+
+
+@keyframes jump {
+    0% { transform: translate(0%, -50%) scale(1, 1); }
+    50% { transform: translate(0%, -300%) scale(1, 1); }
+    100% { transform: translate(0%, -50%) scale(1, .80); }
 }

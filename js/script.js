@@ -12,18 +12,24 @@ const dist = document.querySelector('#counter')
 //     canvas.height = window.innerHeight;
 //     canvas.width = window.innerWidth;
 // })
-canvas.width = 600;
-canvas.height = 300;
-
-const ctx = canvas.getContext('2d');
-
-
-img = new Image();
-img.src = "css/assets/dinobites/DinoRed.png";
-
-img.onload = function(){
-  init();
-}
+// canvas.width = 600;
+// canvas.height = 300;
+//
+// const ctx = canvas.getContext('2d');
+//
+// function background() {
+//   ctx.fillStyle="blue"
+//   ctx.fillRect=(0,0,600,3)
+//
+// }
+// background()
+//
+// img = new Image();
+// img.src = "css/assets/dinobites/DinoRed.png";
+//
+// img.onload = function(){
+//   init();
+// }
 
 //I'm able to make the class for the player and draw the image. I'm having trouble animating it.
 //
@@ -109,74 +115,75 @@ img.onload = function(){
 
 
 //this is an animated dino boy, I can turn these const to part of a class and the functions to methods. BUT I need to move this dude first.
-
-const scale = 3;
-const width = 24 ;
-const height = 24 ;
-const canvasX = 10;
-let canvasY = 200;
-const scaledWidth = scale * width;
-const scaledHeight = scale * height;
-const cycleLoop = [4, 5, 6, 7, 8, 9];
-let currentLoopIndex = 0;
-let frameCount = 0;
-
-function drawFrame(frameX, frameY, canvasX, canvasY) {
-  ctx.drawImage(img, frameX * width, frameY * height, width, height, canvasX, canvasY, scaledWidth, scaledHeight);
-
-  ctx.mozImageSmoothingEnabled =false;
-  ctx.imageSmoothingEnabled = false;
-
-}
-
-
-function step() {
-  frameCount++;
-  if (frameCount < 6) {
-    window.requestAnimationFrame(step);
-    return;
-  }
-  frameCount = 0;
-  ctx.clearRect(canvasX, canvasY, scale * width, scale * height);
-  drawFrame(cycleLoop[currentLoopIndex], 0, canvasX, canvasY);
-  currentLoopIndex++;
-  if (currentLoopIndex >= cycleLoop.length) {
-    currentLoopIndex = 0;
-  }
-  window.requestAnimationFrame(step);
-
-}
-
-function init() {
-  window.requestAnimationFrame(step);
-}
-function bang(){
-  ctx.clearRect(canvasX, canvasY, scale * width, scale * height)
-}
-
-function jump(){
-  canvasY -= 60
-}
-
-function land(){
-  if(canvasY < 200){
-  canvasY += 15
- }
-}
-
-function softLand(){
-  while(canvasY < 200){
-  }  setInterval(land(),600)
-}
-
-//janky jump button
-addEventListener("keydown", (e)=>{
-  if(event.key === 'Shift'){
-      bang();
-      jump();
-    setInterval(()=> land(), 500, ()=> bang())
-  }
-})
+//
+// const scale = 3;
+// const width = 24 ;
+// const height = 24 ;
+// const canvasX = 10;
+// let canvasY = 200;
+// const scaledWidth = scale * width;
+// const scaledHeight = scale * height;
+// const cycleLoop = [4, 5, 6, 7, 8, 9];
+// let currentLoopIndex = 0;
+// let frameCount = 0;
+//
+// function drawFrame(frameX, frameY, canvasX, canvasY) {
+//   ctx.drawImage(img, frameX * width, frameY * height, width, height, canvasX, canvasY, scaledWidth, scaledHeight);
+//
+//   ctx.mozImageSmoothingEnabled =false;
+//   ctx.imageSmoothingEnabled = false;
+//
+// }
+//
+//
+// function step() {
+//   frameCount++;
+//   if (frameCount < 6) {
+//     window.requestAnimationFrame(step);
+//     return;
+//   }
+//   frameCount = 0;
+//   ctx.clearRect(canvasX, canvasY, scale * width, scale * height);
+//   drawFrame(cycleLoop[currentLoopIndex], 0, canvasX, canvasY);
+//   currentLoopIndex++;
+//   if (currentLoopIndex >= cycleLoop.length) {
+//     currentLoopIndex = 0;
+//   }
+//   window.requestAnimationFrame(step);
+//
+// }
+//
+// function init() {
+//   window.requestAnimationFrame(step);
+// }
+// function bang(){
+//   ctx.clearRect(canvasX, canvasY, scale * width, scale * height)
+// }
+//
+// function jump(){
+//   canvasY -= 60
+// }
+//
+// function land(){
+//   if(canvasY < 200){
+//   canvasY += 25
+//  }
+// }
+//
+// function softLand(){
+//   while(canvasY < 200){
+//   }  setInterval(land(),600)
+// }
+//
+// //janky jump button
+// addEventListener("keydown", (e)=>{
+//   if(event.key === 'Shift'){
+//
+//       bang();
+//       jump();
+//     setInterval(()=> land(), 300, ()=> bang())
+//   }
+// })
 
 //From this point down game is almost done.
 //
