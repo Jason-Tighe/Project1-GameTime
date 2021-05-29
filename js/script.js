@@ -1,11 +1,22 @@
 const game = document.querySelector('.game')
-const canvas = document.querySelector('canvas')
+// const canvas = document.querySelector('canvas')
 const mainBoi = document.querySelector('.mainBoi');
 const badBoi = document.querySelector('.badBoi');
 const boop = document.querySelector('#boop')
 const baap = document.querySelector('#baap')
 const dist = document.querySelector('#counter')
 
+function jump(){
+  if(mainBoi.classList == "animate"){return}
+  mainBoi.classList.add("animate");
+  setTimeout(function(){
+    mainBoi.classList.remove("animate")
+  },400)
+}
+
+
+
+addEventListener("click", (e)=>{jump()});
 
 // found this tip on resizing the canvas
 // window.addEventListener('resize', function(){

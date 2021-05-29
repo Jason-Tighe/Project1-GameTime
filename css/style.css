@@ -1,14 +1,11 @@
 *{
   margin: 0;
   padding: 0;
+
 }
 
-:root {
-   --pixel-size: 24;
-}
 
 body{
-  display: grid;
 
 }
 /*
@@ -19,41 +16,46 @@ canvas{
 
   /* background: url('css/Free-Pixel-Art-Hill/PREVIEWS/full.png'); */
 /* ] */
+
 .buffer{
   width: 20px;
   height: 220px;
-  grid-column-start: 1;
-  grid-row-start: 1;
+
 }
 
 .roundBoi{
-  display: grid;
   border: 5px solid;
-  /* background-color: rgb(100,125,165); */
-  grid-column-start: 2;
-  grid-row-start: 2;
-  width: 600px;
+  width: 80vw;
   height: 300px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .game{
-  display: grid;
-  grid-row: 4;
-  /* border: solid 1px; */
-  background-color: orange;
+  position: relative;
+  height: 40px;
+  background-color: black;
+  /* overflow: hidden; */
 }
 
 
 
 .mainBoi{
-  grid-column-start: 1;
   position: relative;
+  overflow: hidden;
   background: red;
-  margin-left: 40px;
+  left: 50px;
+  top: 200px;
+  /* margin-left: 40px; */
   height: 24px;
   width: 24px;
-  overflow: hidden;
-  /* animation: jump 1.2s  infinite; */
+  transform: scale(3);
+
+  /* zoom: 4; */
+}
+
+.animate{
+    animation: jump .6s;
 }
 
 .spriteBoi{
@@ -61,6 +63,26 @@ canvas{
 
 }
 
+.badBoi{
+  position: relative;
+  top: 170px;
+  left: 750px;
+  background: green;
+  height: 48px;
+  width: 48px;
+  animation: slide 1.25s infinite linear;
+  z-index: 6;
+}
+
+.groundGame{
+  position: relative;
+  height: 75px;
+  width: 80vw;
+  top: 155px;
+  left: 0px;
+  background: orange;
+  z-index: -1;
+}
 
 @keyframes moveSpritesheet {
    from {
@@ -71,10 +93,17 @@ canvas{
    }
 }
 
+@keyframes slide {
+  0%{left: 700px;}
+  100%{left: -40px;}
+
+}
+
 
 
 @keyframes jump {
-    0% { transform: translate(0%, -50%) scale(1, 1); }
-    50% { transform: translate(0%, -300%) scale(1, 1); }
-    100% { transform: translate(0%, -50%) scale(1, .80); }
+    0% { transform: translate(0%, -20%) scale(3, 3); }
+    30% {transform: translate(0%, -500%) scale(3, 3);}
+    70% { transform: translate(0%, -450%) scale(3, 3); }
+    100% { transform: translate(0%, -20%) scale(3, 3); }
 }
