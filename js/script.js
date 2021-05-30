@@ -6,15 +6,39 @@ const boop = document.querySelector('#boop')
 const baap = document.querySelector('#baap')
 const dist = document.querySelector('#counter')
 
+
+//this function adds and removes the animate class to the player tag "mainBoi". This allows us to jump using css, but also takes it away so we can reapply that animation.
+
 function jump(){
   if(mainBoi.classList == "animate"){return}
   mainBoi.classList.add("animate");
   setTimeout(function(){
     mainBoi.classList.remove("animate")
-  },400)
+  },600)
 }
 
 
+let x = mainBoi.offSetTop;
+console.log(x)
+
+
+//this is a rough collision function, it checks to see if the character Mainboi;s top touches the left of the enemy block.
+//
+
+function buttBump(){
+  let mainBoiTop = parseInt(window.getComputedStyle(mainBoi).getPropertyValue("top"));
+  let badBoiLeft = parseInt(window.getComputedStyle(badBoi).getPropertyValue("left"));
+  if(badBoiLeft < 50 && badBoiLeft > -50 && mainBoiTop >= 200){
+    badBoi.style.animation ="none";
+    alert("game over boi")
+    // badBoi.style.animation ="block 1s infinite linear";
+  }
+}
+
+
+const deadYet = setInterval((e)=> buttBump(), 10);
+
+console.log(deadYet)
 
 addEventListener("click", (e)=>{jump()});
 

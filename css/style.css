@@ -35,6 +35,7 @@ canvas{
   position: relative;
   height: 40px;
   background-color: black;
+  background-size: 25%
   /* overflow: hidden; */
 }
 
@@ -43,7 +44,7 @@ canvas{
 .mainBoi{
   position: relative;
   overflow: hidden;
-  background: red;
+  /* background: red; */
   left: 50px;
   top: 200px;
   /* margin-left: 40px; */
@@ -55,7 +56,7 @@ canvas{
 }
 
 .animate{
-    animation: jump .6s;
+    animation: jump .5s;
 }
 
 .spriteBoi{
@@ -102,8 +103,9 @@ canvas{
 
 
 @keyframes jump {
-    0% { transform: translate(0%, -20%) scale(3, 3); }
-    30% {transform: translate(0%, -500%) scale(3, 3);}
-    70% { transform: translate(0%, -450%) scale(3, 3); }
-    100% { transform: translate(0%, -20%) scale(3, 3); }
+    0% { top: 170px; }
+    30% {top: 100px;}
+    70% { top: 100px;}
+    100% { top: 170px;}
+
 }
