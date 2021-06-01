@@ -48,24 +48,31 @@ body{
 }
 
 .roundBoi{
-  border: 5px solid;
+  border: 5px solid black;
   width: 80vw;
   height: 300px;
   margin: 0 auto;
   overflow: hidden;
+  background: linear-gradient(#6ad0e7, pink, orange);
 }
 
 .game{
   position: relative;
   height: 40px;
   background-color: black;
-  background-size: 25%
+  background-size: 25%;
+  color: white;
+  font-family: 'Sigmar One';
   /* overflow: hidden; */
 }
 
+#counter{
+  font-family: 'Sigmar One';
 
+}
 
 .mainBoi{
+  image-rendering: pixelated;
   position: relative;
   overflow: hidden;
   /* background: red; */
@@ -74,6 +81,7 @@ body{
   /* margin-left: 40px; */
   height: 24px;
   width: 24px;
+  z-index: 5;
   transform: scale(3);
 
   /* zoom: 4; */
@@ -90,11 +98,13 @@ body{
 
 .badBoi{
   position: relative;
+  image-rendering: pixelated;
   top: 170px;
   left: 750px;
-  background: green;
-  height: 48px;
-  width: 48px;
+  background: url('../css/assets/dinobites/PNG0004.PNG');
+  height: 32px;
+  width: 32px;
+  transform: scale(2.5);
   animation: slide 1.25s infinite linear;
   z-index: 6;
 }
@@ -103,12 +113,32 @@ body{
   position: relative;
   height: 75px;
   width: 80vw;
-  top: 155px;
+  top: 115px;
   left: 0px;
-  background: orange;
-  z-index: -1;
+  background: url('../css/assets/dinobites/Sand Tile.png');
+  animation: movebackground 1s infinite linear;
+  z-index: 1;
 }
 
+.toppings{
+  position: relative;
+  top: 10px;
+  left: 100px;
+  height: 42px;
+  width: 69px;
+  background-image: url('../css/assets/dinobites/Clouds V2.png');
+  transform: scale(3);
+  animation: breeze 10000ms infinite linear;
+}
+
+@keyframes breeze {
+   from {
+      transform: translate3d(500px,0,0)
+   }
+   to {
+      transform: translate3d(-150px,0,0)
+   }
+}
 @keyframes moveSpritesheet {
    from {
       transform: translate3d(0px,0,0)
@@ -117,6 +147,7 @@ body{
       transform: translate3d(-100%,0,0)
    }
 }
+
 
 @keyframes slide {
   0%{left: 700px;}

@@ -5,6 +5,7 @@ const badBoi = document.querySelector('.badBoi');
 const boop = document.querySelector('#boop')
 const baap = document.querySelector('#baap')
 const game = document.querySelector('.game')
+const counter = document.querySelector("#counter")
 
 
 
@@ -24,17 +25,37 @@ function buttBump(){
   let badBoiLeft = parseInt(window.getComputedStyle(badBoi).getPropertyValue("left"));
   if(badBoiLeft < 50 && badBoiLeft > -50 && mainBoiTop >= 200){
     badBoi.style.animation ="none";
-    alert("game over boi")
-    // badBoi.style.animation ="block 1s infinite linear";
+    alert("Game over boi! Only "+jimp+" jumps?  Git Gud");
   }
 }
 
+var jimp = 0;
 
+function  jumpies(){
+  jimp++
+  counter.innerHTML = "Jumpbois: " + jimp
+}
+
+
+// var clicks = 0
+//
+// function jumpShell(){
+//   clicks++
+//   game.innerHTML = "Jumps:" + clicks
+//
+// }
+
+//this is just checking if you've lost every 10ms
 const deadYet = setInterval((e)=> buttBump(), 10);
 
-console.log(deadYet)
 
-addEventListener("click", (e)=>{jump()});
+addEventListener("click", (e)=>{
+  jumpies()
+  jump()
+});
+
+
+
 //this is bringing in the canvas tag
 
 
