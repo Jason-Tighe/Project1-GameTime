@@ -18,7 +18,6 @@ function jump(){
 }
 
 
-let x = mainBoi.offSetTop;
 
 function buttBump(){
   let mainBoiTop = parseInt(window.getComputedStyle(mainBoi).getPropertyValue("top"));

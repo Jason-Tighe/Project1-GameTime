@@ -100,12 +100,12 @@ body{
   position: relative;
   image-rendering: pixelated;
   top: 170px;
-  left: 750px;
+  left: 115%;
   background: url('../css/assets/dinobites/PNG0004.PNG');
   height: 32px;
   width: 32px;
   transform: scale(2.5);
-  animation: slide 1.25s infinite linear;
+  animation: bSlide 1.25s infinite linear;
   z-index: 6;
 }
 
@@ -128,7 +128,7 @@ body{
   width: 69px;
   background-image: url('../css/assets/dinobites/Clouds V2.png');
   transform: scale(3);
-  animation: breeze 10000ms infinite linear;
+  animation: bSlide 10000ms infinite linear;
 }
 
 @keyframes breeze {
@@ -151,6 +151,12 @@ body{
 
 @keyframes slide {
   0%{left: 700px;}
+  100%{left: -40px;}
+
+}
+
+@keyframes bSlide {
+  0%{left: 110%;}
   100%{left: -40px;}
 
 }
